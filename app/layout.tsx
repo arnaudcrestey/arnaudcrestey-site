@@ -2,20 +2,12 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "ProCoach | Diagnostic professionnel gratuit IA",
+  title: "LOVE SCAN | Diagnostic de vie amoureuse",
   description:
-    "Pourquoi votre vie professionnelle bloque ? Répondez à notre test orientation professionnelle IA en 3 minutes et obtenez un diagnostic personnalisé.",
-  keywords: [
-    "test orientation professionnelle",
-    "test reconversion professionnelle",
-    "pourquoi je ne suis pas heureux au travail",
-    "quel métier est fait pour moi",
-    "bilan professionnel gratuit"
-  ],
+    "LOVE SCAN vous aide à comprendre vos dynamiques relationnelles en 3 minutes avec un quiz émotionnel et une analyse générée par IA.",
   openGraph: {
-    title: "ProCoach - Diagnostic professionnel gratuit IA",
-    description:
-      "Découvrez en 3 minutes ce qui freine votre évolution professionnelle.",
+    title: "LOVE SCAN",
+    description: "Diagnostic émotionnel relationnel avec score, profil détecté et recommandations personnalisées.",
     type: "website"
   }
 };
