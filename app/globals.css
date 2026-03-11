@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,21 +9,49 @@
 }
 
 body {
-  @apply bg-deepBlue text-white antialiased;
-  background-image:
-    radial-gradient(circle at 20% 15%, rgba(89, 214, 255, 0.16), transparent 28%),
-    radial-gradient(circle at 80% 25%, rgba(143, 123, 255, 0.22), transparent 32%),
-    linear-gradient(180deg, #061031 0%, #08133a 100%);
+  font-family: "Inter", sans-serif;
   min-height: 100vh;
+  color: #ffffff;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255, 107, 129, 0.45) 0%, transparent 33%),
+    radial-gradient(circle at 80% 18%, rgba(179, 136, 235, 0.35) 0%, transparent 40%),
+    radial-gradient(circle at 50% 120%, rgba(108, 99, 255, 0.4) 0%, #12081f 55%);
 }
 
-.glass {
-  @apply border border-white/20 bg-white/10 backdrop-blur-xl shadow-glass;
+@layer components {
+  .romantic-card {
+    @apply rounded-3xl border border-white/25 bg-white/10 backdrop-blur-xl shadow-[0_15px_80px_rgba(255,143,163,0.2)];
+  }
+
+  .cta-btn {
+    @apply rounded-2xl border border-white/30 bg-gradient-to-r from-[#FF6B81] via-[#FF8FA3] to-[#B388EB] px-6 py-4 text-lg font-semibold text-white shadow-lg transition duration-300 hover:scale-[1.02] hover:shadow-[0_8px_35px_rgba(255,143,163,0.45)];
+  }
 }
 
-.text-gradient {
-  background: linear-gradient(90deg, #59d6ff 0%, #af8fff 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+.animate-float {
+  animation: float 2.8s ease-in-out infinite;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.35s ease;
 }
