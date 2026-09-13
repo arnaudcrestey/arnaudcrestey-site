@@ -4,6 +4,7 @@
   "buildCommand":"npm run build",
   "outputDirectory":"dist",
   "regions":["cdg1"],
+  "redirects":[{"source":"/:path*","has":[{"type":"host","value":"arnaudcrestey.com"}],"destination":"https://www.arnaudcrestey.com/:path*","permanent":true}],
   "functions":{"api/*.js":{"maxDuration":60,"includeFiles":"dist/assets/signature-ac.png"}},
   "headers":[{"source":"/(.*)","headers":[{"key":"X-Content-Type-Options","value":"nosniff"},{"key":"Referrer-Policy","value":"strict-origin-when-cross-origin"},{"key":"X-Frame-Options","value":"DENY"}]}]
 }

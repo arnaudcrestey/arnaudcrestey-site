@@ -4,8 +4,9 @@ import {execFileSync} from 'node:child_process';
 const root=resolve('dist'); let count=0;const failures=[];
 async function walk(dir){for(const item of await readdir(dir,{withFileTypes:true})){const path=join(dir,item.name);if(item.isDirectory())await walk(path);else if(item.name.endsWith('.html'))await check(path);}}
 async function check(path){count++;const html=await readFile(path,'utf8');
- for(const requirement of ['lang="fr"','name="viewport"','name="robots" content="index,follow"','<main','/responsive.css'])if(!html.includes(requirement))failures.push(path+': missing '+requirement);
- if(/\bnoindex\b|\bnofollow\b/.test(html))failures.push(path+': preview indexing restriction');
+ const notFound=path===join(root,'404.html');
+ for(const requirement of ['lang="fr"','name="viewport"',`name="robots" content="${notFound?'noindex':'index'},follow"`,'<main','/responsive.css'])if(!html.includes(requirement))failures.push(path+': missing '+requirement);
+ if((!notFound&&/\bnoindex\b/.test(html))||/\bnofollow\b/.test(html))failures.push(path+': preview indexing restriction');
  for(const m of html.matchAll(/(?:src|href)="(\/[^"]*)"/g)){const [url,hash]=m[1].split('#');if(!url&&!hash)continue;const clean=decodeURIComponent(url.split('?')[0]||'/');let dest=join(root,clean);try{if((await stat(dest)).isDirectory())dest=join(dest,'index.html');await stat(dest);if(hash&&dest.endsWith('.html')){const target=await readFile(dest,'utf8');if(!target.includes('id="'+hash+'"'))failures.push(m[1]+': missing anchor');}}catch{failures.push(path+': missing '+m[1]);}}
  for(const form of html.matchAll(/<form\b[\s\S]*?<\/form>/g))if(/type="submit"(?! disabled)/.test(form[0]))failures.push(path+': submit not disabled before JS');
  const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);if(ids.length!==new Set(ids).size)failures.push(path+': duplicate id');
