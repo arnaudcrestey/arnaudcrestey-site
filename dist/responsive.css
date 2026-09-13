@@ -1,0 +1,115 @@
+/* The inner routes remain usable independently of the immersive entrance. */
+.inner-page main{overflow-x:clip}
+.price-card .starting{position:static;margin-top:18px;margin-bottom:-17px}
+.price-card h3{min-height:82px}
+.depth-copy>p{ text-wrap:pretty }
+.is-light .depth-navigation button[aria-current=step]{color:#70502b}
+.is-light .depth-navigation button:hover{color:#352e20}
+@media(max-width:1100px){
+ .payment-section{grid-template-columns:1fr;gap:30px}
+ .payment-options{gap:25px}
+ .price-card{padding:25px 22px}
+ .price-card h3{font-size:32px}
+ .idea-page,.contact-page{gap:5%}
+ .workshop,.contact-form-panel{padding:27px}
+ .wizard-options{grid-template-columns:1fr}
+}
+@media(max-width:760px){
+ .inner-page{padding-top:76px}
+ .page-intro{padding-top:46px;padding-bottom:15px}
+ .page-intro h1,.idea-page h1,.contact-page h1{font-size:clamp(44px,12vw,72px)}
+ .page-intro>p:not(.eyebrow){font-size:16px;margin-top:22px}
+ .section-heading,.section-tail{display:block}
+ .section-heading>p{margin-top:22px;max-width:none}
+ .section-tail>a{margin-top:18px}
+ .examples-page{padding-top:10px}
+ .demo-tabs{margin-top:15px}
+ .demo-tabs button{font-size:12px;padding:12px 13px}
+ .demo-panel{grid-template-columns:1fr;min-height:0}
+ .demo-visual{min-height:300px}
+ .demo-identity{left:22px;top:24px}
+ .demo-identity p{font-size:34px;margin-top:14px}
+ .demo-identity>span{font-size:10px}
+ .demo-caption{left:22px;font-size:10px}
+ .demo-content{padding:28px 23px}
+ .demo-content h3{font-size:34px}
+ .flavour-options{grid-template-columns:1fr}
+ .portfolio-grid{grid-template-columns:1fr;gap:42px}
+ .portfolio-card>p.portfolio-question{min-height:0}
+ .portfolio-section{padding-top:30px}
+ .idea-invitation{grid-template-columns:1fr;gap:50px;padding:65px var(--gutter)}
+ .idea-invitation h2{font-size:54px}
+ .idea-object{padding:28px 25px 22px;max-width:94%;margin:auto}
+ .idea-object p{font-size:40px}
+ .pricing-full{padding-top:18px}
+ .pricing-cards{grid-template-columns:1fr;gap:22px;margin-top:0}
+ .price-card{padding:28px}
+ .price-card h3{font-size:37px;min-height:0}
+ .price-card>.eyebrow{margin-bottom:18px}
+ .price-card .starting{margin-top:20px;margin-bottom:-20px}
+ .price-card .price{margin-top:23px}
+ .price-card ul{margin:22px 0;padding-top:22px}
+ .price{margin:20px 0}
+ .price strong{font-size:40px}
+ .progression-note{margin:22px 0 40px}
+ .payment-section{padding:27px 23px;gap:27px}
+ .payment-section h2{font-size:38px}
+ .payment-options{grid-template-columns:1fr;gap:20px}
+ .payment-options article{border-left:0;border-top:1px solid #c9d0bf;padding:19px 0 0;display:flex;justify-content:space-between;align-items:center;gap:15px}
+ .payment-options p{margin:0;text-align:right;gap:2px}
+ .payment-options strong{font-size:28px}
+ .followup-section{margin-top:55px}
+ .followup-section>h2{font-size:44px}
+ .followup-grid{grid-template-columns:1fr;gap:20px}
+ .followup-grid article{padding:25px}
+ .followup-grid .price{min-height:0}
+ .price-example{padding:25px 18px}
+ .price-example p{font-size:14px}
+ .plain-service{grid-template-columns:1fr;gap:25px;margin-top:50px}
+ .plain-service h2{font-size:42px}
+ .next-step h2{font-size:50px}
+ .idea-page,.contact-page{grid-template-columns:1fr;gap:38px;padding-top:45px;min-height:0}
+ .idea-page-intro>p:not(.eyebrow){max-width:none}
+ .workshop-promise{gap:8px 12px;margin-top:25px}
+ .workshop{padding:27px 22px;min-height:0}
+ .wizard-title,.result-title{font-size:34px}
+ .wizard-actions{gap:12px}
+ .idea-preview{padding:19px}
+ .idea-handoff{padding:16px}
+ .idea-handoff .button{font-size:12px;padding:10px 15px;gap:10px}
+ .contact-form-panel{padding:28px 23px}
+ .contact-form-panel h2{font-size:37px}
+ .contact-email{font-size:16px}
+ .contact-person{margin-top:25px}
+ .legal-content{padding-top:20px}
+ .legal-content h2{font-size:30px}
+ .legal-content p{font-size:15px}
+ .button{max-width:100%}
+}
+@media(max-width:350px){
+ :root{--gutter:19px}
+ .brand{gap:10px;font-size:10px}.brand small{font-size:8px}
+ .depth-copy h1{font-size:42px}
+ .depth-scene h2{font-size:39px}
+ .encounter-copy h2{font-size:33px}
+ .price-example p{font-size:13px}
+ .nowrap{font-size:inherit}
+ .workshop,.contact-form-panel,.price-card{padding:23px 18px}
+}
+
+.brand-monogram{padding:0;letter-spacing:0;flex-shrink:0}
+.brand-monogram img{width:60px;height:42px;object-fit:cover;mix-blend-mode:screen}
+.depth-navigation button{min-height:44px;min-width:34px;justify-content:center}
+html:not(.depth-enabled) .depth-navigation,html:not(.depth-enabled) .immersion-controls{display:none}
+.reduced-depth .encounter-copy .button-dark{background:var(--gold);color:var(--ink)}
+@media(max-width:760px){.brand-monogram img{width:44px;height:36px}.brand{gap:10px}.immersion-controls button{min-height:32px}}
+
+.mobile-whisper{display:none}.mobile-whisper b{font-size:17px;margin-left:10px;font-weight:400}
+@media(max-width:760px){.desktop-whisper{display:none}.mobile-whisper{display:block}}
+@media(min-width:761px) and (max-width:950px){
+ .site-header,.immersive-home .site-header{height:76px}
+ .site-header nav,.header-contact{display:none}
+ .menu-toggle{display:block}
+ .brand small{display:block}
+ .inner-page{padding-top:76px}
+}

@@ -1,0 +1,37 @@
+import assert from 'node:assert/strict';
+import {reserveInState,readPublicRequest} from '../server/production.mjs';
+import idea from '../api/idea.js';
+import contact from '../api/contact.js';
+const make=()=>({version:1,ideaTotal:0,day:'',contactCount:0,visitors:{},recipients:{},requests:{}});
+const now=Date.UTC(2026,8,13,12);
+let state=make();
+for(let i=0;i<200;i++)reserveInState(state,{kind:'idea',ip:'visitor-'+i},now);
+assert.equal(state.ideaTotal,200);
+assert.throws(()=>reserveInState(state,{kind:'idea',ip:'another'},now),/limite/);
+assert.throws(()=>reserveInState(state,{kind:'idea',ip:'another'},now+86400000),/limite/);
+state=make();const args={kind:'contact',ip:'visitor',requestId:'request',fingerprint:'body',recipient:'recipient'};
+assert.equal(reserveInState(state,args,now),null);
+assert.throws(()=>reserveInState(state,args,now+100),/déjà en cours/);
+assert.equal(state.contactCount,1);
+state.requests.request.status='complete';state.requests.request.receiptSent=true;
+assert.deepEqual(reserveInState(state,args,now+200),{sent:true,receiptSent:true});
+assert.throws(()=>reserveInState(state,{...args,fingerprint:'changed'},now+200),/changé/);
+assert.equal(state.contactCount,1);
+state=make();
+for(let i=0;i<20;i++)reserveInState(state,{...args,ip:'ip'+i,requestId:'r'+i,recipient:'r'+i},now);
+assert.throws(()=>reserveInState(state,{...args,requestId:'new'},now),/limite du jour/);
+reserveInState(state,{...args,requestId:'new'},now+86400000);
+assert.equal(state.contactCount,1);
+state=make();for(let i=0;i<3;i++)reserveInState(state,{kind:'idea',ip:'same'},now+i);
+assert.throws(()=>reserveInState(state,{kind:'idea',ip:'same'},now+5),/Patientez/);
+for(const endpoint of [idea,contact]){
+ const response=await endpoint.fetch(new Request('https://arnaudcrestey.com/api/test'));
+ assert.equal(response.status,405);
+ const bad=await endpoint.fetch(new Request('https://arnaudcrestey.com/api/test',{method:'POST',headers:{origin:'https://evil.example','content-type':'application/json'},body:'{}'}));
+ assert.equal(bad.status,403);
+}
+process.env.VERCEL='1';process.env.CONTROL_HASH_SECRET='test-only-not-a-real-key-12345678901234567890';
+const request=()=>new Request('https://arnaudcrestey.com/api/idea',{method:'POST',headers:{origin:'https://arnaudcrestey.com','content-type':'application/json','x-vercel-forwarded-for':'192.0.2.1'},body:'{"hello":"world"}'});
+const parsed=await readPublicRequest(request(),4096);assert.equal(parsed.raw.hello,'world');assert.notEqual(parsed.ip,'192.0.2.1');
+await assert.rejects(()=>readPublicRequest(request(),3),/trop long/);
+console.log('Production : budget global, quotas, dédoublonnage, origines et corps bornés vérifiés. Aucun envoi ni appel IA.');

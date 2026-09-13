@@ -1,0 +1,16 @@
+{
+  "name": "arnaudcrestey-preversion",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "node server.mjs",
+    "start": "node server.mjs",
+    "check": "node scripts/check.mjs",
+    "build": "node scripts/build.mjs"
+  },
+  "dependencies": {
+    "@vercel/blob": "2.8.0",
+    "nodemailer": "10.0.9"
+  }
+}

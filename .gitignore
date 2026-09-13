@@ -1,0 +1,10 @@
+.sites-runtime/
+node_modules/
+.env*
+!\.env.example
+qa/
+.vercel/
+*.env
+*-usage.json
+*.log
+.vercel

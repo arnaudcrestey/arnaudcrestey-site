@@ -1,0 +1,28 @@
+import assert from 'node:assert/strict';
+import {Readable} from 'node:stream';
+import nodemailer from 'nodemailer';
+import {buildReceiptMail} from '../server/receipt.mjs';
+import {validateContact,buildContactMail,handleContact} from '../server/contact.mjs';
+const input={name:'Test du site',replyTo:'test@example.com',subject:'Mon activité',message:'Un test local, sans envoi.',website:'',requestId:'00000000-0000-4000-8000-000000000001'};
+const valid=validateContact(input),mail=buildContactMail(valid);
+assert.equal(mail.to,'demande@arnaudcrestey.com');
+assert.equal(mail.replyTo.address,'test@example.com');
+assert.ok(mail.text.includes(input.message)&&mail.text.includes(input.replyTo)&&mail.text.includes(input.name));
+assert.deepEqual(mail.envelope.to,['demande@arnaudcrestey.com']);
+assert.equal(buildContactMail(validateContact({...input,replyTo:'+33 6 00 00 00 00'})).replyTo,undefined);
+const receipt=buildReceiptMail(valid,Buffer.from('test-image'));
+assert.equal(receipt.to.address,'test@example.com');
+assert.equal(receipt.replyTo.address,'demande@arnaudcrestey.com');
+assert.ok(receipt.html.includes('cid:signature.ac@arnaudcrestey.com'));
+assert.equal(receipt.headers['Auto-Submitted'],'auto-replied');
+assert.ok(!receipt.html.includes(input.message)&&!receipt.html.includes(input.name));
+assert.equal(buildReceiptMail(validateContact({...input,replyTo:'+33 6 00 00 00 00'}),Buffer.from('image')),null);
+const mime=await nodemailer.createTransport({streamTransport:true,buffer:true}).sendMail(receipt);
+assert.ok(mime.message.toString().includes('Content-ID: <signature.ac@arnaudcrestey.com>'));
+for(const patch of [{name:''},{replyTo:'invalide'},{replyTo:'a@b.fr\r\nBcc: autre@example.com'},{subject:'Autre'},{message:'x'.repeat(1801)},{website:'robot'},{requestId:'x'}])assert.throws(()=>validateContact({...input,...patch}));
+async function request(method,headers,body=''){let status,data;const req=Readable.from([Buffer.from(body)]);req.method=method;req.headers=headers;await handleContact(req,{writeHead:s=>status=s,end:b=>data=JSON.parse(b)});return {status,data};}
+assert.equal((await request('GET',{})).status,405);
+assert.equal((await request('POST',{host:'127.0.0.1:4173',origin:'https://autre.example'})).status,403);
+assert.equal((await request('POST',{host:'127.0.0.1:4173',origin:'http://127.0.0.1:4173','content-type':'text/plain'})).status,415);
+assert.equal((await request('POST',{host:'127.0.0.1:4173',origin:'http://127.0.0.1:4173','content-type':'application/json'},JSON.stringify({...input,replyTo:''}))).status,400);
+console.log('Contact : champs, coordonnées, destinataire fixe, contenu et refus des requêtes invalides OK. Aucun e-mail envoyé.');
