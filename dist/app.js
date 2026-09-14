@@ -39,7 +39,7 @@ if(journey){
  const canvas=document.querySelector('#depth-dust'),ctx=canvas?.getContext('2d');
  const points=Array.from({length:110},(_,i)=>({x:Math.sin(i*17.173)*1.35,y:Math.cos(i*7.723)*1.1,z:(i*.147)%1}));
  function dust(t){if(!ctx)return;const w=canvas.clientWidth,h=canvas.clientHeight,dpr=Math.min(devicePixelRatio||1,2);if(canvas.width!==Math.round(w*dpr)||canvas.height!==Math.round(h*dpr)){canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);}ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,w,h);for(const p of points){const z=((p.z-t*.25)%1+1)%1,scale=.13+z*1.3,x=w/2+p.x*w*.6*scale,y=h/2+p.y*h*.65*scale;ctx.fillStyle=`rgba(221,199,145,${.04+z*.2})`;ctx.beginPath();ctx.arc(x,y,.5+z*1.15,0,Math.PI*2);ctx.fill();}}
- function go(i){if(reduced){scenes[i]?.scrollIntoView({behavior:'instant',block:'start'});return;}const start=scrollY+journey.getBoundingClientRect().top;window.scrollTo({top:start+(position(i)/journeyRange)*(journey.offsetHeight-innerHeight),behavior:'smooth'});}
+ function go(i,behavior='smooth'){if(reduced){scenes[i]?.scrollIntoView({behavior:'instant',block:'start'});return;}const start=scrollY+journey.getBoundingClientRect().top;window.scrollTo({top:start+(position(i)/journeyRange)*(journey.offsetHeight-innerHeight),behavior});}
  function update(){queued=false;if(reduced){document.body.classList.toggle('on-entry',scenes[1].getBoundingClientRect().top>innerHeight*.5);return;}const r=journey.getBoundingClientRect(),t=Math.max(0,Math.min(journeyRange,-r.top/(journey.offsetHeight-innerHeight)*journeyRange)),active=nearest(t);
   const inPause=!!interlude&&t>.43&&t<1.24;
   scenes.forEach((scene,i)=>{const d=t-position(i),incoming=Math.min(1,Math.max(0,(d+.56)/.4)),outgoing=1-Math.min(1,Math.max(0,(d-.12)/.3)),opacity=incoming*outgoing;scene.classList.toggle('is-active',opacity>.005);scene.style.opacity=opacity.toFixed(3);scene.style.transform=`translate3d(${d*(i%2?25:-25)}px,${d*-22}px,${d*610}px)`;scene.inert=i!==active||inPause;scene.setAttribute('aria-hidden',String(i!==active||inPause));});
@@ -54,7 +54,11 @@ if(journey){
  nav.forEach(b=>b.addEventListener('click',()=>go(Number(b.dataset.depthGo))));
  const sceneAnchors=new Map(scenes.filter(scene=>scene.id).map(scene=>['#'+scene.id,Number(scene.dataset.scene)]));
  document.querySelectorAll('a[href^="#"],a[href^="/#"]').forEach(a=>{if(sceneAnchors.has(a.hash))a.addEventListener('click',e=>{e.preventDefault();go(sceneAnchors.get(a.hash));});});
- window.addEventListener('scroll',()=>{if(!queued){queued=true;requestAnimationFrame(update);}},{passive:true});window.addEventListener('resize',()=>{if(!queued){queued=true;requestAnimationFrame(update);}});mode();if(sceneAnchors.has(location.hash))go(sceneAnchors.get(location.hash));
+ // Native fragment scrolling targets overlapping scenes at the start of the stage.
+ // Restore the scene's real scroll position after navigation and browser restoration.
+ function restoreSceneAnchor(){if(!sceneAnchors.has(location.hash))return;requestAnimationFrame(()=>requestAnimationFrame(()=>{const index=sceneAnchors.get(location.hash);if(index===undefined)return;go(index,'instant');update();}));}
+ window.addEventListener('pageshow',restoreSceneAnchor);window.addEventListener('hashchange',restoreSceneAnchor);
+ window.addEventListener('scroll',()=>{if(!queued){queued=true;requestAnimationFrame(update);}},{passive:true});window.addEventListener('resize',()=>{if(!queued){queued=true;requestAnimationFrame(update);}});mode();restoreSceneAnchor();
 }
 
 // Demonstrations are entirely local. No vote, booking or personal data is sent.
