@@ -114,6 +114,11 @@
 .pricing-full .followup-section>.micro-note{text-align:center}
 @media(max-width:760px){.pricing-full .pricing-choice-grid{grid-template-columns:minmax(0,1fr)}.pricing-full .price-card{padding:28px}.payment-simple .payment-options{grid-template-columns:minmax(0,1fr)}.payment-simple .payment-options article{display:block}.payment-simple .payment-options p{text-align:left;margin-top:10px}}
 @media(max-width:400px){.pricing-full .price-card{padding:24px 20px}.pricing-full .price-card h3{font-size:34px}.pricing-full .price-card .button{min-width:0;width:100%}}
+@media(max-width:760px){
+ .pricing-full .price-card li{position:relative;padding-left:20px;text-wrap:pretty}
+ .pricing-full .price-card li::before{position:absolute;left:0;top:0}
+ .pricing-full .pricing-phrase{display:inline-block;max-width:100%;text-wrap:balance}
+}
 .brand-monogram{padding:0;letter-spacing:0;flex-shrink:0}
 .brand-monogram img{width:60px;height:42px;object-fit:cover;mix-blend-mode:screen}
 .depth-navigation button{min-height:44px;min-width:34px;justify-content:center}
