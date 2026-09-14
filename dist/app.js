@@ -62,6 +62,11 @@ if(garage){
 }
 const storyTrack=document.querySelector('.story-track');
 if(storyTrack){
+ let pointerStart=null,storyDragged=false;
+ storyTrack.addEventListener('pointerdown',e=>{pointerStart={x:e.clientX,y:e.clientY};storyDragged=false;},{passive:true});
+ storyTrack.addEventListener('pointermove',e=>{if(pointerStart&&Math.hypot(e.clientX-pointerStart.x,e.clientY-pointerStart.y)>12)storyDragged=true;},{passive:true});
+ storyTrack.addEventListener('pointercancel',()=>{storyDragged=true;pointerStart=null;},{passive:true});
+ storyTrack.addEventListener('click',e=>{if(e.detail>0&&storyDragged&&e.target.closest('.story-link'))e.preventDefault();pointerStart=null;});
  const cards=[...storyTrack.children],previous=document.querySelector('[data-story-prev]'),next=document.querySelector('[data-story-next]'),count=document.querySelector('.story-count');
  let current=0,pending=false;
  const cardTop=i=>cards[i].offsetTop-(storyTrack.clientHeight-cards[i].offsetHeight)/2;
@@ -75,7 +80,8 @@ if(storyTrack){
 const demoTabs=[...document.querySelectorAll('[data-demo-tab]')];
 function selectDemo(name){demoTabs.forEach(b=>{const selected=b.dataset.demoTab===name;b.setAttribute('aria-selected',String(selected));b.tabIndex=selected?0:-1;document.getElementById(b.getAttribute('aria-controls')).hidden=!selected;});}
 demoTabs.forEach((b,i)=>{b.addEventListener('click',()=>selectDemo(b.dataset.demoTab));b.addEventListener('keydown',e=>{if(['ArrowRight','ArrowLeft','Home','End'].includes(e.key)){e.preventDefault();const n=e.key==='Home'?0:e.key==='End'?demoTabs.length-1:(i+(e.key==='ArrowRight'?1:-1)+demoTabs.length)%demoTabs.length;selectDemo(demoTabs[n].dataset.demoTab);demoTabs[n].focus();}});});
-if(location.hash==='#tab-clara')selectDemo('clara');
+function selectDemoFromHash(){const tab=demoTabs.find(b=>'#'+b.id===location.hash);if(!tab)return;selectDemo(tab.dataset.demoTab);requestAnimationFrame(()=>tab.scrollIntoView({block:'start',inline:'nearest',behavior:'instant'}));}
+selectDemoFromHash();window.addEventListener('hashchange',selectDemoFromHash);
 const bakeryForm=document.querySelector('#bakery-vote');
 const flammeAnswers={aveugle:['Votre préférence : À l’aveugle.','Un menu surprise dont les plats se dévoilent au fil du dîner. Les allergies et restrictions alimentaires seraient précisées à la réservation.'], 'quatre-mains':['Votre préférence : À quatre mains.','Deux chefs, deux regards et un menu imaginé ensemble pour une soirée spéciale.'],jazz:['Votre préférence : Au rythme du jazz.','Un duo de jazz joue sur place pendant le dîner, pour accompagner la soirée sans prendre le pas sur les conversations.']};
 document.querySelectorAll('[data-flamme-choice]').forEach(button=>button.addEventListener('click',()=>{document.querySelectorAll('[data-flamme-choice]').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));const [title,body]=flammeAnswers[button.dataset.flammeChoice];const result=document.querySelector('#flamme-result');const heading=document.createElement('h4');heading.append(document.createTextNode('Votre préférence :'),document.createElement('br'),document.createTextNode(title.replace(/^Votre préférence : /,'')));const text=document.createElement('p');text.textContent=body;result.replaceChildren(heading,text);result.hidden=false;}));
