@@ -52,6 +52,14 @@ if(journey){
 }
 
 // Demonstrations are entirely local. No vote, booking or personal data is sent.
+const garage=document.querySelector('.garage-site');
+if(garage){
+ const tabs=[...garage.querySelectorAll('[data-garage-tab]')];
+ const selectGarage=(name,focus=false)=>{const selected=tabs.find(tab=>tab.dataset.garageTab===name);if(!selected)return;tabs.forEach(tab=>{const active=tab===selected;tab.setAttribute('aria-selected',String(active));tab.tabIndex=active?0:-1;const panel=document.getElementById(tab.getAttribute('aria-controls'));panel.hidden=!active;if(active)panel.scrollTop=0;});if(focus)selected.focus({preventScroll:true});};
+ tabs.forEach((tab,i)=>{tab.addEventListener('click',()=>selectGarage(tab.dataset.garageTab));tab.addEventListener('keydown',event=>{if(!['ArrowLeft','ArrowRight','Home','End'].includes(event.key))return;event.preventDefault();const next=event.key==='Home'?0:event.key==='End'?tabs.length-1:(i+(event.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length;selectGarage(tabs[next].dataset.garageTab,true);});});
+ garage.querySelectorAll('[data-garage-open]').forEach(button=>button.addEventListener('click',()=>selectGarage(button.dataset.garageOpen,true)));
+ garage.classList.add('is-interactive');garage.querySelector('.garage-tabs').hidden=false;
+}
 const storyTrack=document.querySelector('.story-track');
 if(storyTrack){
  const cards=[...storyTrack.children],previous=document.querySelector('[data-story-prev]'),next=document.querySelector('[data-story-next]'),count=document.querySelector('.story-count');

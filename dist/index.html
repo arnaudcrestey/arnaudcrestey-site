@@ -52,8 +52,15 @@
 <figcaption class="aside-label">UN GARAGE AUTOMOBILE · EXEMPLE FICTIF</figcaption>
 <div class="garage-site">
 <div class="garage-brand"><span>Garage des Tilleuls</span><span>GARAGE INDÉPENDANT</span></div>
+<div class="garage-tabs" role="tablist" aria-label="Explorer le garage fictif" hidden><button type="button" role="tab" id="garage-tab-home" aria-controls="garage-panel-home" aria-selected="true" data-garage-tab="home">Accueil</button><button type="button" role="tab" id="garage-tab-services" aria-controls="garage-panel-services" aria-selected="false" tabindex="-1" data-garage-tab="services">Prestations</button><button type="button" role="tab" id="garage-tab-contact" aria-controls="garage-panel-contact" aria-selected="false" tabindex="-1" data-garage-tab="contact">Contact</button></div>
+<div class="garage-panels">
+<div class="garage-panel" id="garage-panel-home" role="tabpanel" aria-labelledby="garage-tab-home" tabindex="0">
 <div class="garage-hero"><img src="/assets/garage-tilleuls.jpg" alt="Mécanicien au travail dans un garage lumineux, illustration fictive" width="1536" height="1024"><h3>Un garage de confiance,<br><em>près de chez vous.</em></h3></div>
-<div class="garage-details"><p class="garage-services">Entretien · Réparation · Diagnostic</p><p class="garage-description">Un atelier de proximité pour prendre soin de votre voiture.</p><div class="garage-contact"><span class="garage-action">Prendre rendez-vous</span><span class="garage-practical">Horaires &amp; accès</span></div></div>
+<div class="garage-details"><p class="garage-services">Entretien · Réparation · Diagnostic</p><p class="garage-description">Un atelier de proximité pour prendre soin de votre voiture.</p><div class="garage-contact"><button type="button" class="garage-action" data-garage-open="contact">Prendre rendez-vous</button><button type="button" class="garage-practical" data-garage-open="contact">Horaires &amp; accès</button></div></div>
+</div>
+<div class="garage-panel garage-info" id="garage-panel-services" role="tabpanel" aria-labelledby="garage-tab-services" tabindex="0" hidden><p class="garage-section-label">NOS PRESTATIONS</p><h3>Prendre soin<br><em>de votre voiture.</em></h3><dl class="garage-service-list"><div><dt>Entretien</dt><dd>Vidange, filtres et révision périodique.</dd></div><div><dt>Réparation</dt><dd>Freinage, pneus et pièces d’usure.</dd></div><div><dt>Diagnostic</dt><dd>Identifier un voyant ou un bruit inhabituel.</dd></div></dl><button type="button" class="garage-action" data-garage-open="contact">Contacter le garage</button></div>
+<div class="garage-panel garage-info" id="garage-panel-contact" role="tabpanel" aria-labelledby="garage-tab-contact" tabindex="0" hidden><p class="garage-section-label">HORAIRES ET CONTACT</p><h3>Un échange,<br><em>avant votre visite.</em></h3><dl class="garage-contact-list"><div><dt>Horaires</dt><dd>Lundi au vendredi<br>8 h 30 – 12 h / 14 h – 18 h</dd></div><div><dt>Nous trouver</dt><dd>12, rue de l’Atelier<br>Ville d’exemple</dd></div><div><dt>Téléphone</dt><dd>02 XX XX XX XX</dd></div><div><dt>E-mail</dt><dd>bonjour@garage.example</dd></div></dl><p class="garage-demo-note">Coordonnées fictives. Aucun message ni rendez-vous n’est envoyé.</p></div>
+</div>
 </div>
 </figure>
 </section>
