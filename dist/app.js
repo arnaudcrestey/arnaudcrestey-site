@@ -108,7 +108,7 @@ if(ideaForm){
 
 const contactForm=document.querySelector('#contact-form');
 if(contactForm){
- const selected={'faire-le-point':'Faire le point','point-entree':'Un point d’entrée','systeme-complet':'Un système complet'}[new URLSearchParams(location.search).get('sujet')];
+ const selected={'faire-le-point':'Faire le point','point-entree':'Un point d’entrée','site-vitrine':'Un site vitrine','systeme-complet':'Un système complet'}[new URLSearchParams(location.search).get('sujet')];
  if(selected)contactForm.elements.subject.value=selected;
  const submit=contactForm.querySelector('button[type="submit"]'),error=document.querySelector('#contact-error');
  let sending=false,lastPayload='',requestId='';

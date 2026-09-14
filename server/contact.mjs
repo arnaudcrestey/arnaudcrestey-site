@@ -5,7 +5,7 @@ import {buildReceiptMail} from './receipt.mjs';
 const privateDir=new URL('../../arnaudcrestey-local-private/',import.meta.url);
 const ledgerFile=new URL('contact-usage.json',privateDir);
 const mailbox='demande@arnaudcrestey.com';
-const subjects=['Mon activité','Faire le point','Un point d’entrée','Un système complet','Faire vivre mon site'];
+const subjects=['Mon activité','Faire le point','Un point d’entrée','Un site vitrine','Un système complet','Faire vivre mon site'];
 const completed=new Map();
 let busy=false;
 const recent=[];

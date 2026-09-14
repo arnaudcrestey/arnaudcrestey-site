@@ -5,6 +5,7 @@ import {buildReceiptMail} from '../server/receipt.mjs';
 import {validateContact,buildContactMail,handleContact} from '../server/contact.mjs';
 const input={name:'Test du site',replyTo:'test@example.com',subject:'Mon activité',message:'Un test local, sans envoi.',website:'',requestId:'00000000-0000-4000-8000-000000000001'};
 const valid=validateContact(input),mail=buildContactMail(valid);
+assert.equal(validateContact({...input,subject:'Un site vitrine'}).subject,'Un site vitrine');
 assert.equal(mail.to,'demande@arnaudcrestey.com');
 assert.equal(mail.replyTo.address,'test@example.com');
 assert.ok(mail.text.includes(input.message)&&mail.text.includes(input.replyTo)&&mail.text.includes(input.name));

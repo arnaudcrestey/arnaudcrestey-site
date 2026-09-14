@@ -3,7 +3,7 @@ const escape=value=>String(value).replaceAll('&','&amp;').replaceAll('"','&quot;
 const metadata={
  '/':{title:'Création de sites et stratégie digitale — Arnaud Crestey',description:'Arnaud Crestey accompagne les petites entreprises : clarifier votre activité, créer un site et un point d’entrée utiles, puis faire vivre votre communication.'},
  '/exemples/':{title:'Exemples de sites et points d’entrée — Arnaud Crestey',description:'Restaurant, boulangerie, sophrologie : découvrez des exemples interactifs pour faire participer vos clients et ouvrir une première conversation.'},
- '/tarifs/':{title:'Tarifs : conseil, point d’entrée et site — Arnaud Crestey',description:'Faire le point : 190 € HT. Point d’entrée : 490 € HT. Site et parcours complet à partir de 1 390 € HT. TVA non applicable. Découvrez les offres et le suivi mensuel.'},
+ '/tarifs/':{title:'Tarifs : site vitrine et point d’entrée — Arnaud Crestey',description:'Faire le point : 190 €. Point d’entrée dès 490 €, site vitrine dès 990 €, ensemble dès 1 390 €. TVA non applicable. Suivi à 29 €/mois et interventions dès 39 €.'},
  '/votre-idee/':{title:'Une idée de point d’entrée pour votre métier — Arnaud Crestey',description:'Décrivez votre activité et découvrez une idée de point d’entrée personnalisée : une question concrète et des choix adaptés à vos clients, sans compte.'},
  '/contact/':{title:'Contact : parlons de votre activité — Arnaud Crestey',description:'Un projet de site ou une question de communication ? Contactez Arnaud Crestey, à Vire en Normandie, pour faire avancer votre activité.'}
 };

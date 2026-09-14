@@ -97,6 +97,23 @@
  .workshop,.contact-form-panel,.price-card{padding:23px 18px}
 }
 
+.pricing-full .pricing-choice-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.pricing-full .price-card{padding:34px;min-width:0}
+.pricing-full .price-card .eyebrow{font-size:12px}
+.pricing-full .price-card>p:not(.price,.eyebrow,.price-progression),.pricing-full .price-card ul{font-size:16px}
+.pricing-full .price-card .button{font-size:14px;align-self:center;min-width:210px;max-width:100%}
+.pricing-vat{text-align:center}
+.pricing-clarity{text-align:center;max-width:860px;margin:28px auto 48px;color:var(--muted);font-size:14px;line-height:1.8}
+.pricing-clarity p+p{margin-top:12px}
+.payment-simple .payment-options{grid-template-columns:repeat(2,minmax(0,1fr))}
+.payment-simple .payment-options p{display:block}
+.payment-simple .payment-options strong{display:block;font-size:36px}
+.payment-simple .payment-options span{display:block;line-height:1.6;font-size:12px;margin-top:8px}
+.payment-simple .payment-options h3{line-height:1.5}
+.pricing-full .followup-grid ul{font-size:16px}
+.pricing-full .followup-section>.micro-note{text-align:center}
+@media(max-width:760px){.pricing-full .pricing-choice-grid{grid-template-columns:minmax(0,1fr)}.pricing-full .price-card{padding:28px}.payment-simple .payment-options{grid-template-columns:minmax(0,1fr)}.payment-simple .payment-options article{display:block}.payment-simple .payment-options p{text-align:left;margin-top:10px}}
+@media(max-width:400px){.pricing-full .price-card{padding:24px 20px}.pricing-full .price-card h3{font-size:34px}.pricing-full .price-card .button{min-width:0;width:100%}}
 .brand-monogram{padding:0;letter-spacing:0;flex-shrink:0}
 .brand-monogram img{width:60px;height:42px;object-fit:cover;mix-blend-mode:screen}
 .depth-navigation button{min-height:44px;min-width:34px;justify-content:center}
