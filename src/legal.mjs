@@ -7,6 +7,7 @@ export const legalPages = {
  'mentions-legales':page('Mentions légales','INFORMATIONS LÉGALES','Les informations relatives à l’éditeur et à l’utilisation du site arnaudcrestey.com.',`
  <h2>Éditeur du site</h2>${identity}
  <p>Directeur de la publication : Arnaud Crestey.</p>
+ <p>Régime de franchise en base de TVA : TVA non applicable, art. L. 223-3 du code des impositions sur les biens et services (CIBS).</p>
  <p>Activité : conseil en communication et stratégie digitale, conception de sites, de contenus et de parcours numériques pour les entreprises.</p>
  <h2>Hébergement</h2><p>Le site est hébergé par <strong>Vercel Inc.</strong><br>440 N Barranca Avenue #4133<br>Covina, CA 91723, États-Unis.<br>Téléphone publié par Vercel pour son contact juridique DMCA : <a href="tel:+15592887060">+1 559 288 7060</a> (<a href="https://vercel.com/legal/dmca-policy">source officielle</a>).<br>Assistance technique : <a href="https://vercel.com/help">assistance Vercel</a>.<br>Protection des données : <a href="https://vercel.com/legal/privacy-notice">politique de Vercel</a>.</p>
  <h2>Propriété intellectuelle</h2><p>Les textes, logos, images et réalisations présentés appartiennent à leurs titulaires respectifs. Leur utilisation est soumise aux autorisations et licences applicables, ainsi qu’aux exceptions prévues par la loi. Les composants tiers conservent leurs propres licences.</p><p>Les exemples signalés comme fictifs sont des démonstrations, pas des témoignages de clients. Ils ne déclenchent aucune commande, réservation ou participation réelle.</p>
