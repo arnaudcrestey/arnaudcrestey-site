@@ -56,6 +56,10 @@
 .site-footer>a:hover{color:#dbc699;border-color:#dbc699}
 .site-footer .footer-bottom{justify-content:center;align-items:center;gap:12px 32px;max-width:1100px;margin:auto;padding-top:22px;padding-bottom:4px;color:#b3ada3}
 @media(max-width:760px){.site-footer{padding-top:56px}.site-footer>a{margin-bottom:34px}.site-footer .footer-bottom{gap:10px}}
+@media(max-width:1024px){
+ .site-footer .footer-bottom{flex-direction:column}
+ .site-footer .footer-bottom>a[href="/cgv/"]{order:1}
+}
 .immersive-home.reduced-depth .immersion-controls{background:#0d0e10ed}
 .immersive-home.reduced-depth .encounter-copy>p:not(.eyebrow){color:#c3bfb8}
 @media(max-width:1100px){.immersive-home.on-entry .immersion-controls>span{display:block}.entry-brand h1{max-width:650px}}
