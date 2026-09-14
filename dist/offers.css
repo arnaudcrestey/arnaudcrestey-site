@@ -222,7 +222,7 @@
  .offer-example>img{height:100px}.offer-example figcaption{padding:15px 18px}.offer-example h3{font-size:26px;margin-top:8px}.offer-example figcaption>p:not(.aside-label){font-size:14px;line-height:1.45;margin-top:8px}.offer-example a{font-size:13px;margin-top:10px}
  .system-summary{display:none}
  .service-ledger article{padding:16px 0}.service-heading{margin-bottom:9px}.service-heading h3{font-size:25px}.service-heading strong{font-size:31px}.service-ledger article>p{font-size:14px;line-height:1.45}.service-ledger article>p.service-note{font-size:12px;margin-top:8px}.ledger-note{font-size:12px;padding-top:10px}
- .after-journey{padding:80px 25px;grid-template-columns:1fr;gap:35px}.after-journey figure{max-width:220px}.after-journey img{height:270px}.after-journey h2{font-size:48px}.after-journey p:not(.offer-step){font-size:16px}.after-actions{gap:12px;grid-template-columns:1fr}.after-card{padding:22px}.after-card-title{font-size:27px}.after-card-title br{display:none}
+ .after-journey{padding:80px 25px;grid-template-columns:1fr;gap:35px}.after-journey figure{width:min(100%,220px);margin-inline:auto;text-align:center}.after-journey img{height:270px}.after-journey h2{font-size:48px}.after-journey p:not(.offer-step){font-size:16px}.after-actions{gap:12px;grid-template-columns:1fr}.after-card{padding:22px}.after-card-title{font-size:27px}.after-card-title br{display:none}
  .depth-navigation button>b{max-width:80px;text-align:left;line-height:1.25}
 }
 @media(max-width:760px) and (max-height:740px){
