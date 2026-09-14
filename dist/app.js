@@ -8,6 +8,12 @@ function updateEntrance(){ticking=false;if(!entrance)return;const reduced=matchM
 window.addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(updateEntrance);}},{passive:true});window.addEventListener('resize',updateEntrance);updateEntrance();
 
 const header=document.querySelector('.site-header');
+const headerBack=header?.querySelector('.header-back:not([hidden])');
+if(headerBack){
+ const logo=header.querySelector('.brand'),navigation=header.querySelector('nav');
+ function placeReturn(){const destination=innerWidth>950?navigation.querySelector('a'):menu;if(!destination)return;const left=logo.getBoundingClientRect().right,right=destination.getBoundingClientRect().left;header.style.setProperty('--return-left',((left+right)/2-header.getBoundingClientRect().left)+'px');}
+ placeReturn();window.addEventListener('resize',placeReturn);document.fonts?.ready.then(placeReturn);const returnResize=new ResizeObserver(placeReturn);returnResize.observe(header);returnResize.observe(navigation);
+}
 window.addEventListener('scroll',()=>header?.classList.toggle('is-scrolled',scrollY>45),{passive:true});
 header?.classList.toggle('is-scrolled',scrollY>45);
 
