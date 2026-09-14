@@ -14,6 +14,7 @@ header?.classList.toggle('is-scrolled',scrollY>45);
 const journey=document.querySelector('.depth-journey');
 if(journey){
  const root=document.documentElement,scenes=[...document.querySelectorAll('[data-scene]')],stage=document.querySelector('.depth-stage'),toggle=document.querySelector('#motion-toggle'),nav=[...document.querySelectorAll('[data-depth-go]')],media=matchMedia('(prefers-reduced-motion: reduce)');
+ const lastScene=scenes.length-1,journeyRange=lastScene+.3;
  let reduced=media.matches,queued=false;
  const displayMenu=document.createElement('details');displayMenu.className='display-menu';const displaySummary=document.createElement('summary');displaySummary.setAttribute('aria-label','Confort de lecture');displaySummary.title='Confort de lecture';displaySummary.innerHTML='<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" aria-hidden="true"><path d="M4 7h4m4 0h8M4 17h8m4 0h4"/><circle cx="10" cy="7" r="2"/><circle cx="14" cy="17" r="2"/></svg><span class="display-caption">Confort de lecture</span>';displayMenu.append(displaySummary,toggle);toggle.hidden=false;
  displayMenu.addEventListener('keydown',e=>{if(e.key==='Escape'&&displayMenu.open){e.stopPropagation();displayMenu.open=false;displaySummary.focus();}});
@@ -23,19 +24,20 @@ if(journey){
  const canvas=document.querySelector('#depth-dust'),ctx=canvas?.getContext('2d');
  const points=Array.from({length:110},(_,i)=>({x:Math.sin(i*17.173)*1.35,y:Math.cos(i*7.723)*1.1,z:(i*.147)%1}));
  function dust(t){if(!ctx)return;const w=canvas.clientWidth,h=canvas.clientHeight,dpr=Math.min(devicePixelRatio||1,2);if(canvas.width!==Math.round(w*dpr)||canvas.height!==Math.round(h*dpr)){canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);}ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,w,h);for(const p of points){const z=((p.z-t*.25)%1+1)%1,scale=.13+z*1.3,x=w/2+p.x*w*.6*scale,y=h/2+p.y*h*.65*scale;ctx.fillStyle=`rgba(221,199,145,${.04+z*.2})`;ctx.beginPath();ctx.arc(x,y,.5+z*1.15,0,Math.PI*2);ctx.fill();}}
- function go(i){if(reduced){scenes[i]?.scrollIntoView({behavior:'instant',block:'start'});return;}const start=scrollY+journey.getBoundingClientRect().top;window.scrollTo({top:start+(i/4.3)*(journey.offsetHeight-innerHeight),behavior:'smooth'});}
- function update(){queued=false;if(reduced){document.body.classList.toggle('on-entry',scenes[1].getBoundingClientRect().top>innerHeight*.5);return;}const r=journey.getBoundingClientRect(),t=Math.max(0,Math.min(4.3,-r.top/(journey.offsetHeight-innerHeight)*4.3)),active=Math.min(4,Math.round(t));
+ function go(i){if(reduced){scenes[i]?.scrollIntoView({behavior:'instant',block:'start'});return;}const start=scrollY+journey.getBoundingClientRect().top;window.scrollTo({top:start+(i/journeyRange)*(journey.offsetHeight-innerHeight),behavior:'smooth'});}
+ function update(){queued=false;if(reduced){document.body.classList.toggle('on-entry',scenes[1].getBoundingClientRect().top>innerHeight*.5);return;}const r=journey.getBoundingClientRect(),t=Math.max(0,Math.min(journeyRange,-r.top/(journey.offsetHeight-innerHeight)*journeyRange)),active=Math.min(lastScene,Math.round(t));
   scenes.forEach((scene,i)=>{const d=t-i,incoming=Math.min(1,Math.max(0,(d+.56)/.4)),outgoing=1-Math.min(1,Math.max(0,(d-.12)/.3)),opacity=incoming*outgoing;scene.classList.toggle('is-active',opacity>.005);scene.style.opacity=opacity.toFixed(3);scene.style.transform=`translate3d(${d*(i%2?25:-25)}px,${d*-22}px,${d*610}px)`;scene.inert=i!==active;scene.setAttribute('aria-hidden',String(i!==active));});
   document.body.classList.toggle('on-entry',active===0);
   const light=Math.max(0,1-Math.abs(t-2)*1.8);stage.style.setProperty('--light',light.toFixed(3));document.body.classList.toggle('is-light',light>.6);document.body.classList.toggle('immersion-ended',r.bottom<innerHeight*.6);
   nav.forEach((b,i)=>{if(i===active)b.setAttribute('aria-current','step');else b.removeAttribute('aria-current');});dust(t);
  }
  function mode(){root.classList.add('depth-enabled');document.body.classList.toggle('reduced-depth',reduced);toggle.setAttribute('aria-pressed',String(reduced));toggle.textContent=reduced?'Activer les animations':'Réduire les animations';scenes.forEach(s=>{s.inert=false;s.removeAttribute('aria-hidden');s.style.transform='';s.style.opacity='';});document.body.classList.remove('is-light');update();}
- toggle.addEventListener('click',()=>{const active=Math.min(4,Math.round(Math.max(0,-journey.getBoundingClientRect().top/(journey.offsetHeight-innerHeight)*4.3)));reduced=!reduced;displayMenu.open=false;mode();if(reduced)scenes[active].scrollIntoView({behavior:'instant',block:'start'});else go(0);});
+ toggle.addEventListener('click',()=>{const active=Math.min(lastScene,Math.round(Math.max(0,-journey.getBoundingClientRect().top/(journey.offsetHeight-innerHeight)*journeyRange)));reduced=!reduced;displayMenu.open=false;mode();if(reduced)scenes[active].scrollIntoView({behavior:'instant',block:'start'});else go(0);});
  media.addEventListener('change',()=>{reduced=media.matches;mode();});
  nav.forEach(b=>b.addEventListener('click',()=>go(Number(b.dataset.depthGo))));
- document.querySelectorAll('a[href="/#approche"],a[href="#approche"],a[href="#exemples"]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();go(a.hash==='#exemples'?2:1);}));
- window.addEventListener('scroll',()=>{if(!queued){queued=true;requestAnimationFrame(update);}},{passive:true});window.addEventListener('resize',()=>{if(!queued){queued=true;requestAnimationFrame(update);}});mode();if(location.hash==='#approche')go(1);if(location.hash==='#exemples')go(2);
+ const sceneAnchors=new Map(scenes.filter(scene=>scene.id).map(scene=>['#'+scene.id,Number(scene.dataset.scene)]));
+ document.querySelectorAll('a[href^="#"],a[href^="/#"]').forEach(a=>{if(sceneAnchors.has(a.hash))a.addEventListener('click',e=>{e.preventDefault();go(sceneAnchors.get(a.hash));});});
+ window.addEventListener('scroll',()=>{if(!queued){queued=true;requestAnimationFrame(update);}},{passive:true});window.addEventListener('resize',()=>{if(!queued){queued=true;requestAnimationFrame(update);}});mode();if(sceneAnchors.has(location.hash))go(sceneAnchors.get(location.hash));
 }
 
 // Demonstrations are entirely local. No vote, booking or personal data is sent.
