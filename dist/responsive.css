@@ -119,6 +119,11 @@
  .pricing-full .price-card li::before{position:absolute;left:0;top:0}
  .pricing-full .pricing-phrase{display:inline-block;max-width:100%;text-wrap:balance}
 }
+@media(max-width:1024px){
+ .pricing-full .followup-grid li{position:relative;padding-left:20px;text-wrap:pretty}
+ .pricing-full .followup-grid li::before{position:absolute;left:0;top:0}
+ .pricing-full .followup-grid .pricing-phrase{display:inline-block;max-width:100%;text-wrap:balance}
+}
 .brand-monogram{padding:0;letter-spacing:0;flex-shrink:0}
 .brand-monogram img{width:60px;height:42px;object-fit:cover;mix-blend-mode:screen}
 .depth-navigation button{min-height:44px;min-width:34px;justify-content:center}
