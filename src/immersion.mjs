@@ -8,6 +8,9 @@ export const immersion=`<div class="immersion-controls"><button id="motion-toggl
 <p class="entry-purpose"><span>J’aide les petites entreprises à clarifier leur communication et</span> <span>à créer un site vivant : un site qui présente leur activité,</span> <span>évolue avec leurs offres et invite leurs clients</span> <span>à participer ou à les contacter.</span></p>
 </div>
 </section>
+<aside class="day-interlude" aria-label="Une respiration au fil du jour">
+<div class="day-note"><time class="day-date"><span class="day-weekday">Aujourd’hui</span><span class="day-number"></span><span class="day-month"></span></time><span class="day-rule" aria-hidden="true"></span><p class="day-message">Aujourd’hui, qu’aimeriez-vous<br><em>faire avancer ?</em></p></div>
+</aside>
 <section class="depth-scene offer-scene offer-clarify" data-scene="1" id="approche" aria-labelledby="scene-title-1">
 <div class="offer-copy"><p class="offer-step">01 / AVANT DE CRÉER</p><h2 id="scene-title-1">Faire le point<br><em>avant d’agir.</em></h2><p>Un échange pour comprendre votre activité, ce que vous proposez et les clients à qui vous vous adressez.</p><p class="offer-outcome">Vous repartez avec un besoin clarifié, des priorités et une première direction.</p></div>
 <div class="clarity-sheet offer-aside"><p class="aside-label">CE QUE NOUS CLARIFIONS ENSEMBLE</p><ol class="offer-lines"><li><span>01</span><div><h3>Votre activité</h3><p>Ce que vous faites, pour qui et avec quelle différence.</p></div></li><li><span>02</span><div><h3>Votre message</h3><p>Ce que vos futurs clients doivent comprendre.</p></div></li><li><span>03</span><div><h3>Votre priorité</h3><p>Ce dont votre activité a le plus besoin aujourd’hui.</p></div></li></ol></div>
