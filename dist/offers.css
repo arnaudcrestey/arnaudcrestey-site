@@ -26,6 +26,8 @@
 .header-back svg{transition:transform .2s}
 .header-back:hover svg{transform:translateX(-3px)}
 .header-back:active svg{transform:translateX(-3px) scale(.92)}
+@keyframes return-pulse{0%,100%{opacity:.7;filter:drop-shadow(0 0 0 transparent)}50%{opacity:1;filter:drop-shadow(0 0 7px #dbc69999)}}
+@media(prefers-reduced-motion:no-preference){.header-back:not([hidden]){animation:return-pulse 1.8s ease-in-out .35s 2}.header-back:hover,.header-back:focus-visible{animation:none}}
 #arnaud{scroll-margin-top:100px}
 .about-project-link{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px;color:#806438}
 .about-project-link:hover{color:#262321}
