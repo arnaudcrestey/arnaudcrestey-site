@@ -1,9 +1,11 @@
+import {termsContent} from './terms.mjs';
 const email = '<a href="mailto:demande@arnaudcrestey.com">demande@arnaudcrestey.com</a>';
 const identity = '<p><strong>Arnaud Crestey — Entrepreneur individuel (EI)</strong><br>36 Route du Coisel, Viessoix / La Personnerie<br>14410 Valdallière, France<br>SIREN : 481 437 515 — RCS Caen<br>SIRET : 481 437 515 00028<br>Téléphone : <a href="tel:+33681952345">+33 6 81 95 23 45</a><br>E-mail : '+email+'</p>';
-function page(title, eyebrow, intro, content) {
- return {title:title+' — Arnaud Crestey',description:intro,content:`<section class="page-intro section legal-intro"><p class="eyebrow">${eyebrow}</p><h1>${title}</h1><p>${intro}</p></section><article class="section legal-content">${content}<p class="legal-date">Dernière mise à jour : 13 septembre 2026.</p><a class="under-link" href="/">Revenir à l’accueil</a></article>`};
+function page(title, eyebrow, intro, content, date='13 septembre 2026') {
+ return {title:title+' — Arnaud Crestey',description:intro,content:`<section class="page-intro section legal-intro"><p class="eyebrow">${eyebrow}</p><h1>${title}</h1><p>${intro}</p></section><article class="section legal-content">${content}<p class="legal-date">Dernière mise à jour : ${date}.</p><a class="under-link" href="/">Revenir à l’accueil</a></article>`};
 }
 export const legalPages = {
+ 'cgv':page('Conditions générales de vente','PRESTATIONS PROFESSIONNELLES','Le cadre de votre projet, de sa création à son fonctionnement et à ses évolutions.',termsContent,'14 septembre 2026'),
  'mentions-legales':page('Mentions légales','INFORMATIONS LÉGALES','Les informations relatives à l’éditeur et à l’utilisation du site arnaudcrestey.com.',`
  <h2>Éditeur du site</h2>${identity}
  <p>Directeur de la publication : Arnaud Crestey.</p>
