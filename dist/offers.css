@@ -26,8 +26,9 @@
 .header-back svg{transition:transform .2s}
 .header-back:hover svg{transform:translateX(-3px)}
 .header-back:active svg{transform:translateX(-3px) scale(.92)}
-@keyframes return-pulse{0%,100%{opacity:.7;filter:drop-shadow(0 0 0 transparent)}50%{opacity:1;filter:drop-shadow(0 0 7px #dbc69999)}}
-@media(prefers-reduced-motion:no-preference){.header-back:not([hidden]){animation:return-pulse 1.8s ease-in-out .35s 2}.header-back:hover,.header-back:focus-visible{animation:none}}
+@keyframes return-pulse{0%,100%{opacity:.4;filter:drop-shadow(0 0 0 transparent)}50%{opacity:1;color:#f1d49b;filter:drop-shadow(0 0 9px #eac68ce6)}}
+@keyframes return-nudge{0%,100%{transform:translateX(0) scale(1)}50%{transform:translateX(-6px) scale(1.15)}}
+@media(prefers-reduced-motion:no-preference){.header-back:not([hidden]){animation:return-pulse 1.4s ease-in-out .25s 3}.header-back:not([hidden]) svg{animation:return-nudge 1.4s ease-in-out .25s 3}.header-back:hover,.header-back:focus-visible,.header-back:hover svg,.header-back:focus-visible svg{animation:none}}
 #arnaud{scroll-margin-top:100px}
 .about-project-link{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px;color:#806438}
 .about-project-link:hover{color:#262321}
