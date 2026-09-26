@@ -18,8 +18,8 @@ export function withSeo(html,path,{notFound=false}={}){
  const tags=`<link rel="canonical" href="${url}">
 <meta property="og:type" content="website"><meta property="og:locale" content="fr_FR"><meta property="og:site_name" content="Arnaud Crestey">
 <meta property="og:title" content="${escape(title)}"><meta property="og:description" content="${escape(description)}"><meta property="og:url" content="${url}">
-<meta property="og:image" content="${siteOrigin}/assets/signature-ac.png"><meta property="og:image:alt" content="Signature AC — arnaudcrestey.com">
-<meta name="twitter:card" content="summary"><meta name="twitter:title" content="${escape(title)}"><meta name="twitter:description" content="${escape(description)}"><meta name="twitter:image" content="${siteOrigin}/assets/signature-ac.png">
+<meta property="og:image" content="${siteOrigin}/assets/share-ac-dark.png"><meta property="og:image:alt" content="Signature AC sur fond noir — arnaudcrestey.com">
+<meta name="twitter:card" content="summary"><meta name="twitter:title" content="${escape(title)}"><meta name="twitter:description" content="${escape(description)}"><meta name="twitter:image" content="${siteOrigin}/assets/share-ac-dark.png">
 <script type="application/ld+json">${JSON.stringify({'@context':'https://schema.org','@graph':graph}).replaceAll('<','\\u003c')}</script>`;
  return html.replace('</head>',tags+'\n</head>');
 }
