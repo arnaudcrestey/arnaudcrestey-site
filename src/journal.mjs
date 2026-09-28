@@ -133,9 +133,8 @@ const journal = `<section class="journal-page" aria-labelledby="journal-title">
   </header>
   <div class="journal-feed" id="le-fil">
     <div class="journal-feed-heading"><span>LES PUBLICATIONS</span><span>${String(publications.length).padStart(2,'0')} PUBLICATION${publications.length>1?'S':''}</span></div>
-    <p class="journal-archive-note">Les créations d’archives sont classées selon la date de leurs fichiers vidéo ; elles rejoignent ce fil rétrospectivement.</p>
     <div class="journal-timeline">${publicationsParDate.map(publication).join('')}
-      <div class="journal-next"><span class="journal-next-mark" aria-hidden="true">✳</span><div><p>LA SUITE S’ÉCRIT ICI</p><h2>Le fil ne fait<br><em>que commencer.</em></h2><span>Il grandira avec les projets et les découvertes d’AC.</span></div></div>
+      <div class="journal-next"><span class="journal-next-mark" aria-hidden="true">✳</span><div><h2>Le fil ne fait<br><em>que commencer.</em></h2></div></div>
     </div>
   </div>
 </section>`;
