@@ -6,6 +6,7 @@
 .journal-hero-skip:focus-visible{left:50%;transform:translateX(-50%)}
 .journal-feed{max-width:1300px;margin:auto;padding:72px var(--gutter) 135px;color:#202723}
 .journal-feed-heading{display:flex;justify-content:space-between;gap:20px;padding:0 0 25px;border-bottom:1px solid #b9b6ac;font-size:11px;letter-spacing:.19em;font-weight:600;color:#866b3d}
+.journal-archive-note{max-width:680px;margin:19px 0 0;color:#6b746b;font-size:12px;line-height:1.6}
 .journal-timeline{position:relative;max-width:1110px;margin:68px auto 0}
 .journal-timeline::before{content:"";position:absolute;left:178px;top:0;bottom:0;width:1px;background:linear-gradient(#ab8b56,#cbb989 72%,transparent)}
 .journal-entry{position:relative;display:grid;grid-template-columns:160px minmax(0,1fr);gap:36px;padding-bottom:92px;scroll-margin-top:115px}
@@ -22,6 +23,8 @@
 .journal-lead{max-width:730px;font-size:19px;line-height:1.7;color:#3e4a42}
 .journal-film{margin:39px 0 27px;background:#121413;border:1px solid #a89c7e;box-shadow:0 28px 75px #24261d24;overflow:hidden}
 .journal-film video{display:block;width:100%;aspect-ratio:16/9;object-fit:contain;background:#0a0c0b}
+.journal-film--square{max-width:640px}
+.journal-film--square video{aspect-ratio:1}
 .journal-film figcaption{padding:12px 18px;color:#d7c6a5;font-size:11px;letter-spacing:.09em}
 .journal-story{max-width:780px;font-size:16px;line-height:1.85;color:#4b574e}
 .journal-entry-end{display:flex;justify-content:space-between;align-items:end;gap:35px;margin-top:30px}
