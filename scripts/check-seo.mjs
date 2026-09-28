@@ -1,9 +1,10 @@
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {pages} from '../src/content.mjs';
+import {journalPages} from '../src/journal.mjs';
 import {legalPages} from '../src/legal.mjs';
 import {siteOrigin} from '../src/seo.mjs';
-const paths=['/',...Object.keys({...pages,...legalPages}).map(slug=>'/'+slug+'/')];
+const paths=['/',...Object.keys({...pages,...journalPages,...legalPages}).map(slug=>'/'+slug+'/')];
 const titles=new Set(),descriptions=new Set();
 const sitemap=await readFile('dist/sitemap.xml','utf8');
 const urls=[...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(m=>m[1]);
@@ -24,4 +25,4 @@ const robots=await readFile('dist/robots.txt','utf8');assert.ok(robots.includes(
 const notFound=await readFile('dist/404.html','utf8');assert.ok(notFound.includes('noindex,follow'));assert.ok(!notFound.includes('rel="canonical"'));
 const config=JSON.parse(await readFile('vercel.json','utf8'));
 assert.deepEqual(config.redirects,[{source:'/:path*',has:[{type:'host',value:'arnaudcrestey.com'}],destination:siteOrigin+'/:path*',permanent:true}]);
-console.log('SEO : huit pages, titres uniques, canonical, métadonnées de partage, données structurées, sitemap et redirection cohérents. Pages légales sans texte de préversion.');
+console.log(`SEO : ${paths.length} pages, titres uniques, canonical, métadonnées de partage, données structurées, sitemap et redirection cohérents. Pages légales sans texte de préversion.`);
