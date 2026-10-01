@@ -1,8 +1,8 @@
 /* Shared navigation: the existing menu is preserved; only its trigger and new entries change. */
 .site-header nav{align-items:center;gap:clamp(18px,2vw,28px)}
-.site-header nav .header-fil{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;flex-shrink:0;border:1px solid #c6a96f66;border-radius:50%;background:#12120f;box-shadow:0 0 15px #d7c08f14;transition:box-shadow .3s,border-color .3s}
+.site-header nav .header-fil{position:relative;isolation:isolate;display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;flex-shrink:0;border:1px solid #c6aa72;border-radius:50%;background:#12120f;box-shadow:inset 0 0 18px #d7c08f14,0 0 20px #d7c08f20;transition:box-shadow .3s,transform .3s}
 .site-header nav .header-fil:after{display:none}
-.header-fil:hover,.header-fil:focus-visible{box-shadow:0 0 22px #d7c08f40!important;border-color:#e7cf98!important}
+.site-header nav .header-fil:hover,.site-header nav .header-fil:focus-visible{box-shadow:0 0 28px #d7c08f42;transform:translateY(-1px)}
 .nav-fil-symbol{display:block;width:32px;height:32px;flex-shrink:0}
 .nav-fil-symbol svg{display:block;width:100%;height:100%;overflow:visible;animation:nav-fil-turn 20s linear infinite}
 .nav-fil-symbol path{fill:none;stroke:#c6a96f;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
