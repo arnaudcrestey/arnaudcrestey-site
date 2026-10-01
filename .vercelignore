@@ -1,4 +1,6 @@
 .git
+.openai
+.vercel
 .env*
 qa
 .sites-runtime

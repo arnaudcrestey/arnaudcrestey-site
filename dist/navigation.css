@@ -1,0 +1,31 @@
+/* Shared navigation: the existing menu is preserved; only its trigger and new entries change. */
+.site-header nav{align-items:center;gap:clamp(18px,2vw,28px)}
+.site-header nav .header-fil{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;flex-shrink:0;border:1px solid #c6a96f66;border-radius:50%;background:#12120f;box-shadow:0 0 15px #d7c08f14;transition:box-shadow .3s,border-color .3s}
+.site-header nav .header-fil:after{display:none}
+.header-fil:hover,.header-fil:focus-visible{box-shadow:0 0 22px #d7c08f40!important;border-color:#e7cf98!important}
+.nav-fil-symbol{display:block;width:32px;height:32px;flex-shrink:0}
+.nav-fil-symbol svg{display:block;width:100%;height:100%;overflow:visible;animation:nav-fil-turn 20s linear infinite}
+.nav-fil-symbol path{fill:none;stroke:#c6a96f;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.nav-fil-symbol .nav-fil-glint{stroke:#fff1c8;stroke-width:2.3;stroke-dasharray:19 201;stroke-dashoffset:220;filter:drop-shadow(0 0 5px #f5dca5);animation:day-journal-glint 6s linear infinite}
+.mobile-nav .mobile-fil{display:flex;align-items:center;gap:12px}
+.menu-toggle.menu-orbit{position:relative;isolation:isolate;align-items:center;justify-content:center;flex-direction:column;gap:4px;flex-shrink:0;width:64px;height:64px;padding:0;border-radius:50%;border:1px solid #c6aa72;background:#12120f;color:#f0d9a7;box-shadow:inset 0 0 18px #d7c08f14,0 0 20px #d7c08f20;transition:box-shadow .3s,transform .3s}
+.menu-toggle.menu-orbit:hover{box-shadow:0 0 28px #d7c08f42;transform:translateY(-1px)}
+.menu-toggle.menu-orbit span{background:none;margin:0;height:auto;display:block}
+.menu-toggle.menu-orbit .menu-orbit-ring{position:absolute;inset:-3px;border:1px solid transparent;border-top-color:#f6e9ca;border-right-color:#d7c08f88;border-radius:50%;animation:menu-orbit-turn 6s linear infinite;transition:opacity .3s}
+.menu-orbit-ring:after{content:'';position:absolute;width:5px;height:5px;border-radius:50%;background:#fff1cc;right:7px;top:7px;box-shadow:0 0 10px #e3c98f}
+.menu-toggle.menu-orbit .menu-orbit-core{position:relative;width:26px;height:22px;margin-top:3px}
+.menu-orbit-core i{position:absolute;display:block;width:4px;height:4px;background:currentColor;border-radius:50%;transition:all .45s;top:8px}
+.menu-orbit-core i:nth-child(1){left:2px;top:11px}
+.menu-orbit-core i:nth-child(2){left:11px;top:4px}
+.menu-orbit-core i:nth-child(3){left:20px;top:11px}
+.menu-toggle.menu-orbit .menu-orbit-label{font-size:11px;line-height:1.1;font-weight:400;padding-bottom:3px}
+.menu-orbit[aria-expanded=true] .menu-orbit-core i{width:24px;height:1.5px;border-radius:2px;top:10px;left:1px;transform:rotate(45deg)}
+.menu-orbit[aria-expanded=true] .menu-orbit-core i:nth-child(2){transform:rotate(-45deg)}
+.menu-orbit[aria-expanded=true] .menu-orbit-core i:nth-child(3){opacity:0}
+.menu-toggle.menu-orbit[aria-expanded=true] .menu-orbit-ring{animation:none;opacity:0}
+@keyframes nav-fil-turn{to{transform:rotate(360deg)}}
+@keyframes menu-orbit-turn{to{transform:rotate(360deg)}}
+@media(max-width:1120px){.site-header,.immersive-home .site-header{height:76px}.site-header nav,.header-tools,.site-header .header-contact{display:none}.menu-toggle.menu-orbit{display:flex}.site-header .brand-lockup{width:90px}.inner-page{padding-top:76px}.mobile-nav{top:76px;max-height:calc(100svh - 76px);overflow-y:auto}.mobile-nav .display-menu{margin-top:10px;border-top:1px solid #d8c39b30;padding-top:12px}.mobile-nav .display-menu summary{width:100%;height:44px;justify-content:flex-start;gap:12px;padding:10px 0;font-size:14px;border:0;border-radius:0}.mobile-nav .display-caption{display:inline}.mobile-nav .display-menu button{position:static;width:100%;margin:6px 0;font-size:14px}}
+@media(prefers-reduced-motion:reduce){.nav-fil-symbol svg,.nav-fil-symbol .nav-fil-glint,.menu-toggle.menu-orbit .menu-orbit-ring{animation:none}.nav-fil-symbol .nav-fil-glint{opacity:0}.menu-toggle.menu-orbit,.menu-orbit-core i,.header-fil{transition:none}}
+.reduced-depth .nav-fil-symbol svg,.reduced-depth .nav-fil-symbol .nav-fil-glint,.reduced-depth .menu-orbit-ring{animation:none!important}
+.reduced-depth .nav-fil-symbol .nav-fil-glint{opacity:0}
