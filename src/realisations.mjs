@@ -1,5 +1,5 @@
 const projects=[
- {id:'osys',name:'OSYS',sector:'PRÉVENTION & ORIENTATION',line:'Des repères, quand ils comptent.',description:'Un univers sobre pour aborder la prévention, préparer les informations utiles et trouver des repères. Une entrée claire pour un sujet qui demande de l’attention.',url:'https://www.osys14.com/',effect:'depth'},
+ {id:'osys',name:'OSYS',sector:'PRÉVENTION & ORIENTATION',line:'Des repères, quand ils comptent.',description:'Un univers sobre pour aborder la prévention, préparer les informations utiles et trouver des repères. Une entrée claire pour un sujet qui demande de l’attention : les violences conjugales.',url:'https://www.osys14.com/',effect:'depth'},
  {id:'qlyk',name:'Qlyk Studio Auto',sector:'IMAGE & AUTOMOBILE',line:'Un autre regard sur le véhicule.',description:'Une présentation premium pour un studio qui valorise l’environnement visuel des véhicules, sans modifier le véhicule lui-même. Un univers affirmé, au service de l’image.',url:'https://www.qlykstudio.fr/',effect:'light'},
  {id:'czame',name:'C·zame',sector:'DIALOGUE & PRÉVENTION',line:'Trouver les mots pour ouvrir le dialogue.',description:'Une porte d’entrée pour clarifier une situation sensible liée à une conduite addictive et préparer une conversation.',url:'https://www.czame.fr/',effect:'reveal'}
 ];
