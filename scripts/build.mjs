@@ -6,7 +6,7 @@ import {journalPages} from '../src/journal.mjs';
 import {realisationPages} from '../src/realisations.mjs';
 import {withSeo,sitemap,siteOrigin} from '../src/seo.mjs';
 const base=await readFile('src/base.html','utf8');
-await writeFile('dist/index.html',withSeo(base.replace(/<main id="main">[\s\S]*?<\/main>/,`<main id="main">${immersion}</main>`).replace('class="home"','class="home immersive-home"'),'/'));
+await writeFile('dist/index.html',withSeo(base.replace(/<main id="main">[\s\S]*?<\/main>/,`<main id="main">${immersion}</main>`).replace('class="home"','class="home immersive-home on-entry"').replace('</head>','<noscript><style>.immersive-home.on-entry .site-header,.immersive-home.on-entry .mobile-nav{visibility:visible;pointer-events:auto}</style></noscript></head>'),'/'));
 const publicPages={...pages,...journalPages,...realisationPages,...legalPages};
 for(const [slug,page] of Object.entries(publicPages)){
  let html=base.replace(/<title>.*?<\/title>/,`<title>${page.title}</title>`).replace(/<meta name="description" content="[^"]*">/,`<meta name="description" content="${page.description}">`).replace('class="home"','class="inner-page"').replace(/<main id="main">[\s\S]*?<\/main>/,`<main id="main">${page.content}</main>`);

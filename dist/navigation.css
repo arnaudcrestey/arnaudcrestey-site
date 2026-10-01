@@ -26,7 +26,7 @@
 @keyframes nav-fil-turn{to{transform:rotate(360deg)}}
 @keyframes menu-orbit-turn{to{transform:rotate(360deg)}}
 @media(max-width:1120px){.site-header,.immersive-home .site-header{height:76px}.site-header nav,.header-tools,.site-header .header-contact{display:none}.menu-toggle.menu-orbit{display:flex}.site-header .brand-lockup{width:90px}.inner-page{padding-top:76px}.mobile-nav{top:76px;max-height:calc(100svh - 76px);overflow-y:auto}.mobile-nav .display-menu{margin-top:10px;border-top:1px solid #d8c39b30;padding-top:12px}.mobile-nav .display-menu summary{width:100%;height:44px;justify-content:flex-start;gap:12px;padding:10px 0;font-size:14px;border:0;border-radius:0}.mobile-nav .display-caption{display:inline}.mobile-nav .display-menu button{position:static;width:100%;margin:6px 0;font-size:14px}}
-@media(max-width:760px){.menu-toggle.menu-orbit{width:58px;height:58px}}
+@media(max-width:760px){.menu-toggle.menu-orbit{width:48px;height:48px}.site-header .brand-lockup{width:100px}}
 .site-header nav .home-orbit{position:relative;isolation:isolate;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:3px;flex-shrink:0;width:44px;height:44px;padding:0;border-radius:50%;border:1px solid #c6aa72;background:#12120f;color:#f0d9a7;box-shadow:inset 0 0 18px #d7c08f14,0 0 20px #d7c08f20;transition:box-shadow .3s,transform .3s}
 .site-header nav .home-orbit:after{display:none}
 .site-header nav .home-orbit:hover,.site-header nav .home-orbit:focus-visible{box-shadow:0 0 28px #d7c08f42;transform:translateY(-1px)}
